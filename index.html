@@ -2127,6 +2127,268 @@
     .fade-in-active {
       animation: fadeIn var(--t-base) forwards ease-out;
     }
+
+    /* ============================================================
+       SECTION: OPENING ANIMATION / SPLASH SCREEN
+       ============================================================ */
+
+    /* Splash overlay container */
+    .splash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #1F332B 50%, var(--color-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      overflow: hidden;
+      animation: splashFadeOut 0.8s ease-in-out forwards;
+      animation-delay: 2.2s;
+    }
+
+    .splash-overlay.hidden {
+      display: none;
+    }
+
+    /* Geometric background pattern */
+    .splash-pattern {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(185, 151, 91, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(185, 151, 91, 0.05) 0%, transparent 50%);
+      animation: patternShift 20s ease-in-out infinite;
+    }
+
+    /* Splash content */
+    .splash-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s8);
+    }
+
+    /* Animated circles */
+    .splash-circles {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .circle {
+      position: absolute;
+      border: 2px solid var(--color-gold);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    .circle-1 {
+      width: 60px;
+      height: 60px;
+      animation: circlePulse 2.2s ease-out forwards;
+    }
+
+    .circle-2 {
+      width: 100px;
+      height: 100px;
+      animation: circlePulse 2.2s ease-out forwards 0.3s;
+    }
+
+    .circle-3 {
+      width: 140px;
+      height: 140px;
+      animation: circlePulse 2.2s ease-out forwards 0.6s;
+    }
+
+    @keyframes circlePulse {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.3);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    /* Brand section */
+    .splash-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s6);
+      animation: brandSlideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .splash-brand-line {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      animation: lineExpand 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    @keyframes lineExpand {
+      0% {
+        width: 0;
+        opacity: 0;
+      }
+      100% {
+        width: 50px;
+        opacity: 1;
+      }
+    }
+
+    .splash-brand-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--s1);
+    }
+
+    .splash-wordmark-ar {
+      font-family: var(--font-arabic);
+      font-size: 48px;
+      color: var(--color-gold-lt);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      animation: textFadeScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+
+    .splash-wordmark-en {
+      font-family: var(--font-display);
+      font-size: 42px;
+      color: var(--color-white);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      animation: textFadeScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.65s;
+      opacity: 0;
+    }
+
+    @keyframes textFadeScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Tagline */
+    .splash-tagline {
+      font-family: var(--font-ui);
+      font-size: var(--text-sm);
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: taglineFadeIn 1s ease-out forwards;
+      animation-delay: 1s;
+      opacity: 0;
+    }
+
+    @keyframes taglineFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Loading dots */
+    .splash-loader {
+      display: flex;
+      gap: var(--s3);
+      justify-content: center;
+      margin-top: var(--s4);
+    }
+
+    .loader-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--color-gold);
+      border-radius: 50%;
+      animation: dotBounce 1.4s ease-in-out infinite;
+      opacity: 0.6;
+    }
+
+    .loader-dot:nth-child(1) { animation-delay: 0s; }
+    .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotBounce {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+    }
+
+    /* Background pattern animation */
+    @keyframes patternShift {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(20px, -20px);
+      }
+    }
+
+    /* Splash fade out */
+    @keyframes splashFadeOut {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Main content fade in */
+    @keyframes contentFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    body.splash-complete {
+      animation: contentFadeIn 0.6s ease-out;
+    }
   </style>
 </head>
 
@@ -2138,6 +2400,44 @@
   ================================================================
 -->
 <body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       OPENING ANIMATION SPLASH SCREEN
+       ══════════════════════════════════════════════════════════ -->
+  <div id="splash-overlay" class="splash-overlay">
+    <!-- Geometric background pattern -->
+    <div class="splash-pattern"></div>
+    
+    <!-- Main splash content -->
+    <div class="splash-content">
+      <!-- Animated circle elements -->
+      <div class="splash-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+      </div>
+      
+      <!-- Brand section -->
+      <div class="splash-brand">
+        <div class="splash-brand-line"></div>
+        <div class="splash-brand-container">
+          <span class="splash-wordmark-ar">إرشاد</span>
+          <span class="splash-wordmark-en">Irshad</span>
+        </div>
+        <div class="splash-brand-line"></div>
+      </div>
+      
+      <!-- Tagline -->
+      <p class="splash-tagline">Islamic Learning from First Principles</p>
+      
+      <!-- Loading indicator -->
+      <div class="splash-loader">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Read progress bar ── -->
   <div id="read-progress" role="progressbar" aria-label="Reading progress"></div>
@@ -2306,6 +2606,40 @@
        ══════════════════════════════════════════════════════════ -->
   <script>
   'use strict';
+
+  /* ============================================================
+     OPENING ANIMATION — Splash Screen Controller
+     ============================================================ */
+  
+  // Initialize splash screen on page load
+  function initSplashScreen() {
+    const splashOverlay = document.getElementById('splash-overlay');
+    
+    // Automatically hide splash after animation completes (3 seconds)
+    setTimeout(() => {
+      if (splashOverlay) {
+        splashOverlay.classList.add('hidden');
+        document.body.classList.add('splash-complete');
+      }
+    }, 3000);
+  }
+
+  // Run splash screen on DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplashScreen);
+  } else {
+    initSplashScreen();
+  }
+
+  // Prevent scroll during splash
+  function blockScrollDuringSplash() {
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      document.body.style.overflow = 'auto';
+    }, 3000);
+  }
+
+  blockScrollDuringSplash();
 
   // Prevent browser scroll jumps on navigation
   if ('scrollRestoration' in history) {
